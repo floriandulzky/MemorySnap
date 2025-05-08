@@ -1,0 +1,359 @@
+{
+    "id": "test-config",
+    "title": "Foto Challenge Lisa & Flo",
+    "description": "Mach mit bei der Foto-Challenge und halte die besten Momente der Feier fest! Hier sind 70 spannende Aufgaben, die du während der Feier erfüllen kannst. Viel Spaß!",
+  "challenges": [
+    {
+      "id": "1",
+      "title": "Foto mit dem ältesten Gast",
+      "description": "Mach ein gemeinsames Foto mit dem ältesten Gast der Feier."
+    },
+    {
+      "id": "2",
+      "title": "Neues Gesicht",
+      "description": "Mach ein Selfie mit jemandem, den du heute zum ersten Mal triffst."
+    },
+    {
+      "id": "3",
+      "title": "Langzeitpaar",
+      "description": "Fotografiere dich mit einem Paar, das schon über 10 Jahre zusammen ist."
+    },
+    {
+      "id": "4",
+      "title": "Namenszwilling",
+      "description": "Finde jemanden mit dem gleichen Anfangsbuchstaben im Vornamen wie du und macht ein Foto."
+    },
+    {
+      "id": "5",
+      "title": "Tisch-Mix",
+      "description": "Mach ein Gruppenfoto mit Gästen von mindestens vier verschiedenen Tischen."
+    },
+    {
+      "id": "6",
+      "title": "Style-Twin",
+      "description": "Fotografiere dich mit jemandem, der einen ähnlichen Kleidungsstil hat wie du."
+    },
+    {
+      "id": "7",
+      "title": "Musik-Moment",
+      "description": "Mach ein Selfie mit dem DJ oder der Band."
+    },
+    {
+      "id": "8",
+      "title": "Haarfarben-Trio",
+      "description": "Finde drei Gäste mit unterschiedlichen Haarfarben und macht ein Foto zusammen."
+    },
+    {
+      "id": "9",
+      "title": "Prost mit Fremden",
+      "description": "Fotografiere dich beim Anstoßen mit jemandem, den du nicht kennst."
+    },
+    {
+      "id": "10",
+      "title": "Kleines Glück",
+      "description": "Mach ein Foto mit einem Kind auf der Feier."
+    },
+    {
+      "id": "11",
+      "title": "Tanzfoto",
+      "description": "Fotografiere dich mit jemandem, der gerade tanzt."
+    },
+    {
+      "id": "12",
+      "title": "Outfit-Star",
+      "description": "Mach ein Foto mit dem für dich schönsten Outfit des Abends."
+    },
+    {
+      "id": "13",
+      "title": "Teamfoto mit Personal",
+      "description": "Mach ein Selfie mit einem Teammitglied aus Service oder Küche."
+    },
+    {
+      "id": "14",
+      "title": "Fotografen-Doppel",
+      "description": "Finde jemanden, der auch viele Fotos macht, und macht ein Selfie zusammen."
+    },
+    {
+      "id": "15",
+      "title": "Tischmoment",
+      "description": "Fotografiere einen schönen Moment an deinem Tisch mit anderen Gästen."
+    },
+    {
+      "id": "16",
+      "title": "Familienfoto",
+      "description": "Mach ein Foto mit jemandem aus der Familie des Brautpaares."
+    },
+    {
+      "id": "17",
+      "title": "Drei Neue",
+      "description": "Finde drei Leute, die du nicht kennst, stelle dich vor und macht ein Gruppenbild."
+    },
+    {
+      "id": "18",
+      "title": "Anstoßen fürs Brautpaar",
+      "description": "Fotografiere einen Toast auf das Brautpaar – du darfst mit aufs Bild!"
+    },
+    {
+      "id": "19",
+      "title": "Tanzbeobachtung",
+      "description": "Mach ein Bild, wie du jemanden beim Tanzen beobachtest."
+    },
+    {
+      "id": "20",
+      "title": "Details mit Mensch",
+      "description": "Fotografiere ein schönes Deko-Detail mit einer Person im Hintergrund."
+    },
+    {
+      "id": "21",
+      "title": "Draußen-Gruppenfoto",
+      "description": "Mach ein Gruppenbild im Freien."
+    },
+    {
+      "id": "22",
+      "title": "Sitznachbarn",
+      "description": "Mach ein Selfie mit deinem Sitznachbarn."
+    },
+    {
+      "id": "23",
+      "title": "Weitgereist",
+      "description": "Mach ein Foto mit jemandem, der über 300 km angereist ist."
+    },
+    {
+      "id": "24",
+      "title": "Toiletten-Zufall",
+      "description": "Mach ein Foto mit dem ersten Menschen, dem du auf dem Weg zur Toilette begegnest."
+    },
+    {
+      "id": "25",
+      "title": "Lächeln des Tages",
+      "description": "Finde den Gast mit dem schönsten Lächeln und mach ein Selfie."
+    },
+    {
+      "id": "26",
+      "title": "Heimatverbunden",
+      "description": "Mach ein Gruppenfoto mit Gästen aus deiner Stadt oder Region."
+    },
+    {
+      "id": "27",
+      "title": "Lach-Moment",
+      "description": "Mach ein Foto mit jemandem, der gerade herzlich lacht."
+    },
+    {
+      "id": "28",
+      "title": "Lieblingsessen",
+      "description": "Fotografiere dein Lieblingsgericht des Abends – mit einem anderen Gast im Bild."
+    },
+    {
+      "id": "29",
+      "title": "Tanzpaar",
+      "description": "Mach ein Foto von einem Tanzpaar – du darfst mit drauf!"
+    },
+    {
+      "id": "30",
+      "title": "Süßes Foto",
+      "description": "Mach ein Bild mit jemandem, der gerade etwas Süßes isst."
+    },
+    {
+      "id": "31",
+      "title": "Hut oder Highlight",
+      "description": "Fotografiere dich mit jemandem mit einem auffälligen Accessoire."
+    },
+    {
+      "id": "32",
+      "title": "Brillen-Bande",
+      "description": "Finde zwei Gäste mit Brille und macht ein Foto zu dritt."
+    },
+    {
+      "id": "33",
+      "title": "Fotobox-Moment",
+      "description": "Mach ein Selfie vor der Fotobox oder in ihr."
+    },
+    {
+      "id": "34",
+      "title": "Geburtstagsgast",
+      "description": "Mach ein Foto mit jemandem, der heute Geburtstag hat."
+    },
+    {
+      "id": "35",
+      "title": "Umarmung",
+      "description": "Fotografiere eine herzliche Umarmung."
+    },
+    {
+      "id": "36",
+      "title": "Jüngster Gast",
+      "description": "Mach ein Bild mit dem jüngsten Gast (ggf. mit Elternteil)."
+    },
+    {
+      "id": "37",
+      "title": "Torten-Nähe",
+      "description": "Fotografiere dich in der Nähe der Hochzeitstorte."
+    },
+    {
+      "id": "38",
+      "title": "Toast fürs Glück",
+      "description": "Halte einen Toast auf das Brautpaar fest – mit dir im Bild."
+    },
+    {
+      "id": "39",
+      "title": "Dessert-Selfie",
+      "description": "Mach ein Selfie beim Dessert-Schlemmen."
+    },
+    {
+      "id": "40",
+      "title": "Cheers mit Vorbild",
+      "description": "Fotografiere dich mit jemandem, den du bewunderst – beim Anstoßen."
+    },
+    {
+      "id": "41",
+      "title": "Farb-Freunde",
+      "description": "Finde jemanden mit deiner Lieblingsfarbe am Outfit – und macht ein Foto."
+    },
+    {
+      "id": "42",
+      "title": "Tanzfoto mit Emoji",
+      "description": "Mach ein Bild von jemandem beim Tanzen und kommentiere es im Kopf mit einem Emoji."
+    },
+    {
+      "id": "43",
+      "title": "Schuh-Vergleich",
+      "description": "Fotografiere dich mit jemandem mit ähnlichen Schuhen."
+    },
+    {
+      "id": "44",
+      "title": "Namensfamilie",
+      "description": "Mach ein Gruppenfoto mit Gästen, die denselben Nachnamen haben."
+    },
+    {
+      "id": "45",
+      "title": "Blumenfoto",
+      "description": "Mach ein Selfie mit einer Blume aus der Deko."
+    },
+    {
+      "id": "46",
+      "title": "Erfahrene Ehe",
+      "description": "Mach ein Foto mit jemandem, der schon verheiratet ist."
+    },
+    {
+      "id": "47",
+      "title": "Sympathie-Foto",
+      "description": "Fotografiere dich mit jemandem, den du besonders sympathisch findest."
+    },
+    {
+      "id": "48",
+      "title": "Essensszene",
+      "description": "Fotografiere eine lustige Szene beim Essen."
+    },
+    {
+      "id": "49",
+      "title": "Tisch-Selfie",
+      "description": "Mach ein Selfie mit einem Tischpartner vom Abendessen."
+    },
+    {
+      "id": "50",
+      "title": "Lachen teilen",
+      "description": "Fotografiere dich beim gemeinsamen Lachen mit jemandem."
+    },
+    {
+      "id": "51",
+      "title": "Geschenke-Zone",
+      "description": "Mach ein Foto in der Nähe des Geschenketisches."
+    },
+    {
+      "id": "52",
+      "title": "Mini-Teamfoto",
+      "description": "Finde zwei andere Gäste und macht ein lustiges Gruppenbild."
+    },
+    {
+      "id": "53",
+      "title": "Getränk des Abends",
+      "description": "Mach ein Selfie mit deinem Lieblingsgetränk."
+    },
+    {
+      "id": "54",
+      "title": "Romantik-Moment",
+      "description": "Fotografiere einen romantischen Augenblick – kreativ erlaubt!"
+    },
+    {
+      "id": "55",
+      "title": "Challenge-Partner",
+      "description": "Finde jemanden, der auch eine Challenge hat – macht ein Bild zusammen."
+    },
+    {
+      "id": "56",
+      "title": "Ratespiel",
+      "description": "Mach ein Selfie mit jemandem, der vielleicht dieselbe Schuhgröße hat wie du."
+    },
+    {
+      "id": "57",
+      "title": "Lieblingslied",
+      "description": "Finde jemanden, der dein Lieblingslied kennt – macht ein Foto!"
+    },
+    {
+      "id": "58",
+      "title": "Ungewöhnlicher Drink",
+      "description": "Fotografiere dich mit einem Getränk, das du sonst nie trinkst."
+    },
+    {
+      "id": "59",
+      "title": "Rednerfoto",
+      "description": "Mach ein Bild mit jemandem, der heute eine Rede gehalten hat."
+    },
+    {
+      "id": "60",
+      "title": "Tanzlust",
+      "description": "Finde jemanden, der gerne tanzt – macht ein Action-Foto!"
+    },
+    {
+      "id": "61",
+      "title": "Dreiergespräch",
+      "description": "Fotografiere eine Unterhaltung von mindestens drei Leuten."
+    },
+    {
+      "id": "62",
+      "title": "Lächel-Moment",
+      "description": "Mach ein Selfie mit jemandem, der dich gerade zum Lachen gebracht hat."
+    },
+    {
+      "id": "63",
+      "title": "Selfie-Zwilling",
+      "description": "Finde jemanden, der dir ähnlich sieht – macht ein Zwilling-Selfie."
+    },
+    {
+      "id": "64",
+      "title": "Band-Foto",
+      "description": "Mach ein Gruppenbild, das wie ein cooles Bandfoto aussieht."
+    },
+    {
+      "id": "65",
+      "title": "Haarlängenvergleich",
+      "description": "Mach ein Bild mit jemandem, der die gleiche Haarlänge hat wie du."
+    },
+    {
+      "id": "66",
+      "title": "Spiegel-Selfie",
+      "description": "Mach ein Selfie vor einem Spiegel auf der Location."
+    },
+    {
+      "id": "67",
+      "title": "Getränke-Schönheit",
+      "description": "Fotografiere das schönste Getränk des Abends – mit dir!"
+    },
+    {
+      "id": "68",
+      "title": "Lieblingsplatz",
+      "description": "Mach ein Selfie an deinem Lieblingsplatz der Feier."
+    },
+    {
+      "id": "69",
+      "title": "Spontane Umarmung",
+      "description": "Fotografiere eine echte, spontane Umarmung – vielleicht deine eigene!"
+    },
+    {
+      "id": "70",
+      "title": "Nächstbester Fotograf",
+      "description": "Finde jemanden mit Kamera oder Handy – macht ein Bild von euch beiden!"
+    }
+  ]
+
+
+}
