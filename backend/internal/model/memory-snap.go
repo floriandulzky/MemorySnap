@@ -1,6 +1,6 @@
 package model
 
-type Wedding struct {
+type MemorySnap struct {
 	Id          string      `json:"id"`
 	Title       string      `json:"title"`
 	Description string      `json:"description"`

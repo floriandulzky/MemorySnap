@@ -3,41 +3,41 @@ package service
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/floriandulzky/wedding-foto-challenge-backend/internal/model"
-	"github.com/floriandulzky/wedding-foto-challenge-backend/internal/repository"
+	"github.com/floriandulzky/memory-snap/backend/internal/model"
+	"github.com/floriandulzky/memory-snap/backend/internal/repository"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"regexp"
 )
 
-type WeddingService struct {
+type MemorySnapService struct {
 	s3Repo repository.S3
 }
 
-func NewWeddingService(s3Repo repository.S3) WeddingService {
-	return WeddingService{
+func NewMemorySnapService(s3Repo repository.S3) MemorySnapService {
+	return MemorySnapService{
 		s3Repo: s3Repo,
 	}
 }
 
-func (s *WeddingService) GetWedding(weddingUUID string) (model.Wedding, error) {
-	configFile, err := s.s3Repo.LoadChallengeConfig(weddingUUID)
+func (s *MemorySnapService) GetBy(uuid string) (model.MemorySnap, error) {
+	configFile, err := s.s3Repo.LoadChallengeConfig(uuid)
 	if err != nil {
 		log.Error().Err(err).Msgf("could not load challenge config")
-		return model.Wedding{}, fmt.Errorf("could not load challenge config")
+		return model.MemorySnap{}, fmt.Errorf("could not load challenge config")
 	}
 
-	var challengeConfig model.Wedding
+	var challengeConfig model.MemorySnap
 	err = json.Unmarshal(configFile, &challengeConfig)
 	if err != nil {
 		log.Error().Err(err).Msgf("could not unmarshal challenge config")
-		return model.Wedding{}, fmt.Errorf("could not unmarshal challenge config")
+		return model.MemorySnap{}, fmt.Errorf("could not unmarshal challenge config")
 	}
 
-	files, err := s.s3Repo.GetFileList(weddingUUID + "/")
+	files, err := s.s3Repo.GetFileList(uuid + "/")
 	if err != nil {
 		log.Error().Err(err).Msgf("could not load file list")
-		return model.Wedding{}, fmt.Errorf("could not load file list")
+		return model.MemorySnap{}, fmt.Errorf("could not load file list")
 	}
 	fileMap := make(map[string]model.Image)
 	for _, file := range files {
@@ -67,20 +67,20 @@ func (s *WeddingService) GetWedding(weddingUUID string) (model.Wedding, error) {
 
 	return challengeConfig, nil
 }
-func (s *WeddingService) GetWeddingChallenge(weddingUUID string, challengeId string) (model.Challenge, error) {
-	challangeConfigFile, err := s.s3Repo.LoadChallengeConfig(weddingUUID)
+func (s *MemorySnapService) GetChallenge(uuid string, challengeId string) (model.Challenge, error) {
+	challangeConfigFile, err := s.s3Repo.LoadChallengeConfig(uuid)
 	if err != nil {
 		log.Error().Err(err).Msgf("could not load challenge config")
 		return model.Challenge{}, fmt.Errorf("could not load challenge config")
 	}
-	var challengeConfig model.Wedding
+	var challengeConfig model.MemorySnap
 	err = json.Unmarshal(challangeConfigFile, &challengeConfig)
 	if err != nil {
 		log.Error().Err(err).Msgf("could not unmarshal challenge config")
 		return model.Challenge{}, fmt.Errorf("could not unmarshal challenge config")
 	}
 
-	files, err := s.s3Repo.GetFileList(weddingUUID + "/" + challengeId + "/")
+	files, err := s.s3Repo.GetFileList(uuid + "/" + challengeId + "/")
 	if err != nil {
 		log.Error().Err(err).Msgf("could not load file list")
 		return model.Challenge{}, fmt.Errorf("could not load file list")
@@ -107,10 +107,10 @@ func (s *WeddingService) GetWeddingChallenge(weddingUUID string, challengeId str
 	return model.Challenge{}, fmt.Errorf("could not find challenge %s", challengeId)
 }
 
-func (s *WeddingService) SaveImage(weddingUUID string, challengeId string, image []byte) error {
+func (s *MemorySnapService) SaveImage(UUID string, challengeId string, image []byte) error {
 	newUUID := uuid.New().String()
 	err := s.s3Repo.UploadFile(
-		fmt.Sprintf("%s/%s/%s", weddingUUID, challengeId, newUUID),
+		fmt.Sprintf("%s/%s/%s", UUID, challengeId, newUUID),
 		image,
 	)
 	if err != nil {

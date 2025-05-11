@@ -2,37 +2,37 @@ package handler
 
 import (
 	"encoding/json"
-	"github.com/floriandulzky/wedding-foto-challenge-backend/internal/service"
+	"github.com/floriandulzky/memory-snap/backend/internal/service"
 	"github.com/go-chi/chi/v5"
 	"github.com/rs/zerolog/log"
 	"io"
 	"net/http"
 )
 
-type WeddingHandler struct {
-	service service.WeddingService
+type HttpHandler struct {
+	service service.MemorySnapService
 }
 
-func NewWeddingHandler(weddingService service.WeddingService) WeddingHandler {
-	return WeddingHandler{
-		service: weddingService,
+func NewHttpHandler(memorySnapService service.MemorySnapService) HttpHandler {
+	return HttpHandler{
+		service: memorySnapService,
 	}
 }
 
-func (wh *WeddingHandler) GetWedding(w http.ResponseWriter, r *http.Request) {
-	weddingUuid := chi.URLParam(r, "weddingUuid")
-	if weddingUuid == "" {
-		http.Error(w, "Wedding UUID is required", http.StatusBadRequest)
+func (wh *HttpHandler) GetMemorySnap(w http.ResponseWriter, r *http.Request) {
+	uuid := chi.URLParam(r, "uuid")
+	if uuid == "" {
+		http.Error(w, "UUID is required", http.StatusBadRequest)
 		return
 	}
-	wedding, err := wh.service.GetWedding(weddingUuid)
+	memorySnap, err := wh.service.GetBy(uuid)
 	if err != nil {
-		http.Error(w, "Failed to get wedding", http.StatusInternalServerError)
+		http.Error(w, "Failed to get memorySnap", http.StatusInternalServerError)
 		return
 	}
-	resp, err := json.Marshal(wedding)
+	resp, err := json.Marshal(memorySnap)
 	if err != nil {
-		http.Error(w, "Failed to marshal wedding data", http.StatusInternalServerError)
+		http.Error(w, "Failed to marshal memorySnap data", http.StatusInternalServerError)
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -43,10 +43,10 @@ func (wh *WeddingHandler) GetWedding(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (wh *WeddingHandler) GetWeddingChallenge(w http.ResponseWriter, r *http.Request) {
-	weddingUuid := chi.URLParam(r, "weddingUuid")
-	if weddingUuid == "" {
-		http.Error(w, "Wedding UUID is required", http.StatusBadRequest)
+func (wh *HttpHandler) GetChallenge(w http.ResponseWriter, r *http.Request) {
+	uuid := chi.URLParam(r, "uuid")
+	if uuid == "" {
+		http.Error(w, "UUID is required", http.StatusBadRequest)
 		return
 	}
 	challengeId := chi.URLParam(r, "challengeId")
@@ -54,14 +54,14 @@ func (wh *WeddingHandler) GetWeddingChallenge(w http.ResponseWriter, r *http.Req
 		http.Error(w, "Challenge ID is required", http.StatusBadRequest)
 		return
 	}
-	wedding, err := wh.service.GetWeddingChallenge(weddingUuid, challengeId)
+	challenge, err := wh.service.GetChallenge(uuid, challengeId)
 	if err != nil {
-		http.Error(w, "Failed to get wedding", http.StatusInternalServerError)
+		http.Error(w, "Failed to get challenge", http.StatusInternalServerError)
 		return
 	}
-	resp, err := json.Marshal(wedding)
+	resp, err := json.Marshal(challenge)
 	if err != nil {
-		http.Error(w, "Failed to marshal wedding data", http.StatusInternalServerError)
+		http.Error(w, "Failed to marshal challenge data", http.StatusInternalServerError)
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -70,10 +70,10 @@ func (wh *WeddingHandler) GetWeddingChallenge(w http.ResponseWriter, r *http.Req
 		http.Error(w, "Failed to write response", http.StatusInternalServerError)
 	}
 }
-func (wh *WeddingHandler) PostWeddingChallenge(w http.ResponseWriter, r *http.Request) {
-	weddingUuid := chi.URLParam(r, "weddingUuid")
-	if weddingUuid == "" {
-		http.Error(w, "Wedding UUID is required", http.StatusBadRequest)
+func (wh *HttpHandler) PostChallenge(w http.ResponseWriter, r *http.Request) {
+	uuid := chi.URLParam(r, "uuid")
+	if uuid == "" {
+		http.Error(w, "UUID is required", http.StatusBadRequest)
 		return
 	}
 	challengeId := chi.URLParam(r, "challengeId")
@@ -108,7 +108,7 @@ func (wh *WeddingHandler) PostWeddingChallenge(w http.ResponseWriter, r *http.Re
 			http.Error(w, "Failed to read image file", http.StatusInternalServerError)
 			return
 		}
-		saveFileErr := wh.service.SaveImage(weddingUuid, challengeId, bytes)
+		saveFileErr := wh.service.SaveImage(uuid, challengeId, bytes)
 		if saveFileErr != nil {
 			log.Error().Err(saveFileErr).Msgf("Failed to save image")
 			http.Error(w, "Failed to save image", http.StatusInternalServerError)
