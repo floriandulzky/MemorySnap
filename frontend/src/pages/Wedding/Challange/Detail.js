@@ -21,7 +21,7 @@ export function Detail() {
     }, [id, challenge])
 
     const itemTemplate = (item) => {
-        return <img src={`https://wedding-foto-challenge.eu-central-1.linodeobjects.com/${item.url}`} alt={item.alt} style={{ width: '100%', display: 'block' }} />;
+        return <img src={`https://memory-snap.eu-central-1.linodeobjects.com/${item.url}`} alt={item.alt} style={{ width: '100%', display: 'block' }} />;
     }
 
     const thumbnailTemplate = (item) => {
@@ -84,7 +84,7 @@ export function Detail() {
                     challengeDetail.images && challengeDetail.images.map((image, index) => {
                         let imgEl = <img style={{ width: '200px', height: '200px', objectFit: 'cover' }}
                                          alt={image.alt_text}
-                                         src={`https://wedding-foto-challenge.eu-central-1.linodeobjects.com/${image.url}`}
+                                         src={`https://memory-snap.eu-central-1.linodeobjects.com/${image.url}`}
                                          onClick={
                             () => {setActiveIndex(index); galleria.current.show()}
                         } />

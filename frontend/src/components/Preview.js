@@ -8,7 +8,7 @@ export function Preview(attr) {
     return (
         <div id={attr.id} className={"flex justify-content-center flex-column p-2 cursor-pointer hover:bg-black-alpha-10"}>
             <div className="flex">
-                <Image src={`https://wedding-foto-challenge.eu-central-1.linodeobjects.com/${attr.previewUrl}`}
+                <Image src={`https://memory-snap.eu-central-1.linodeobjects.com/${attr.previewUrl}`}
                        alt="Image"
                        width="250"
                        onClick={() => {
