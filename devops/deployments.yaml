@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ghcr.io/floriandulzky/memory-snap-frontend:0.0.1-rc.02
+          ports:
+          - containerPort: 80
+      imagePullSecrets:
+        - name: ghcr-secret
+      restartPolicy: Always
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: ghcr.io/floriandulzky/memory-snap-backend:0.0.1-rc.02
+          ports:
+          - containerPort: 1909
+          envFrom:
+            - secretRef:
+                name: memory-snap-secret
+      imagePullSecrets:
+        - name: ghcr-secret
+      restartPolicy: Always
