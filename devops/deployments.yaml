@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/floriandulzky/memory-snap-frontend:0.0.2
+          image: ghcr.io/floriandulzky/memory-snap-frontend:1.0.0
           ports:
           - containerPort: 80
       imagePullSecrets:
@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: ghcr.io/floriandulzky/memory-snap-backend:0.0.2
+          image: ghcr.io/floriandulzky/memory-snap-backend:1.0.0
           ports:
           - containerPort: 1909
           envFrom:
