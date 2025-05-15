@@ -65,6 +65,7 @@ export function Detail() {
             <div className={"flex flex-row p-5 flex-grow-1 justify-content-center align-items-center"}>
                 <FileUpload name="image[]" url={`/api/${id}/${challenge}/upload`}
                             mode="advanced"
+                            multiple={true}
                             accept="image/*"
                             chooseOptions={chooseOptions}
                             uploadOptions={uploadOptions}
