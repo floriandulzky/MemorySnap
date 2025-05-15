@@ -6,11 +6,12 @@ export function Preview(attr) {
     const navigate = useNavigate();
 
     return (
-        <div id={attr.id} className={"flex justify-content-center flex-column p-2 cursor-pointer hover:bg-black-alpha-10"}>
-            <div className="flex">
+        <div id={attr.id}
+             className={"flex m-2 p-4 bg-primary-50 justify-content-center flex-column p-2 cursor-pointer hover:bg-primary-100 border-round-2xl w-20rem"}>
+            <div className="flex justify-content-center">
                 <Image src={`https://memory-snap.eu-central-1.linodeobjects.com/${attr.previewUrl}`}
                        alt="Image"
-                       width="250"
+                       imageClassName={"border-round-2xl w-18rem"}
                        onClick={() => {
                            navigate(`/wedding/${attr.weddingId}/${attr.id}`)
                        }}
@@ -19,7 +20,7 @@ export function Preview(attr) {
                 />
             </div>
             <div className="flex justify-content-center">
-                <p>{attr.id} - {attr.title}</p>
+                {attr.id} - {attr.title}
             </div>
         </div>
     )
