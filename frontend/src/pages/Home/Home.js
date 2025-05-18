@@ -25,7 +25,7 @@ export default function LandingPage() {
             <section
                 className="flex flex-column align-items-center justify-content-center min-h-screen text-center p-4"
                 style={{
-                    backgroundImage: "url('lp_bg.jpg')",
+                    backgroundImage: "url('lp_bg.JPG')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                 }}
