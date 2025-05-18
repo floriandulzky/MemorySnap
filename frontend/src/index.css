@@ -18,3 +18,7 @@ code {
     background-attachment: fixed;
     background-position: 16% center;
 }
+
+.p-stepper-title {
+    white-space: wrap !important;
+}
