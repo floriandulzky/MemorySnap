@@ -4,9 +4,21 @@ import {Stepper} from "primereact/stepper";
 import {StepperPanel} from "primereact/stepperpanel";
 import {FAQSection} from "../../components/Faq";
 import LandingPageFotoChallengeSection from "../../components/LandingPageFotoChallengeSection";
+import ReactGA from "react-ga4";
 
 export default function LandingPage() {
+    ReactGA.initialize("G-X19LP2QSQD");
+
+    const trackButtonClick = (event) => {
+        ReactGA.event({
+            category: 'Button',
+            action: 'Click',
+            label: event.currentTarget.innerText,
+        });
+    }
+
     const stepperRef = React.useRef(null);
+
     return (
         <div className="text-gray-900">
             {/* Hero Section */}
@@ -27,10 +39,12 @@ export default function LandingPage() {
                             Mit <strong>Memory Hunt</strong> wird eure Hochzeit zur <br />
                             interaktiven Foto-Challenge – ganz ohne App.
                         </p>
-                        <a href="#we-host-for-you" className="m-1 no-underline p-button p-button-rounded p-button-lg p-button-primary">
+                        <a href="#we-host-for-you" onClick={trackButtonClick}
+                           className="m-1 no-underline p-button p-button-rounded p-button-lg p-button-primary">
                             Jetzt starten ab 5€
                         </a>
-                        <a href="#howitworks" className="m-1 no-underline p-button p-button-rounded p-button-lg p-button-outlined border-primary-500">
+                        <a href="#howitworks" onClick={trackButtonClick}
+                           className="m-1 no-underline p-button p-button-rounded p-button-lg p-button-outlined border-primary-500">
                             So funktioniert’s
                         </a>
                     </div>
@@ -99,6 +113,7 @@ export default function LandingPage() {
                             </p>
                             <a
                                 href="#we-host-for-you"
+                                onClick={trackButtonClick}
                             >
                                 <Button label="siehe 6 Schritte Details" className="p-button-warning p-button-outlined m-1" />
                             </a>
@@ -106,6 +121,7 @@ export default function LandingPage() {
                                 href="https://buymeacoffee.com/floriandula"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={trackButtonClick}
                             >
                                 <Button label="Buy Me a Coffee" className="p-button-warning m-1" />
                             </a>
@@ -120,6 +136,7 @@ export default function LandingPage() {
                                 href="https://github.com/floriandulzky/memorysnap"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={trackButtonClick}
                             >
                                 <Button label="Gehe zu GitHub" className="p-button-outlined" />
                             </a>
@@ -143,13 +160,19 @@ export default function LandingPage() {
                                     href="https://buymeacoffee.com/floriandula"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={trackButtonClick}
                                 >
                                     <Button label="Jetzt starten ab 5€" className="p-button-warning" />
                                 </a>
                             </div>
                             <div className="flex py-4 flex-grow-1 flex-column">
                                 <div />
-                                <Button label="Weiter" className={"align-items-end"} icon="pi pi-arrow-right" iconPos="right" onClick={() => stepperRef.current.nextCallback()} />
+                                <Button label="Weiter"
+                                        className={"align-items-end"} icon="pi pi-arrow-right" iconPos="right"
+                                        onClick={(event) => {
+                                            stepperRef.current.nextCallback();
+                                            trackButtonClick(event)
+                                        } } />
                             </div>
                         </StepperPanel>
                         <StepperPanel header="Erstes Kennenlernen">
@@ -158,7 +181,12 @@ export default function LandingPage() {
                             </div>
                             <div className="flex py-4 flex-grow-1 flex-row">
                                 <Button label="Zurück" className={"flex-grow-1"} severity="secondary" icon="pi pi-arrow-left" iconPos="left" onClick={() => stepperRef.current.prevCallback()} />
-                                <Button label="Weiter" className={"flex-grow-1"} icon="pi pi-arrow-right" iconPos="right" onClick={() => stepperRef.current.nextCallback()} />
+                                <Button label="Weiter"
+                                        className={"align-items-end"} icon="pi pi-arrow-right" iconPos="right"
+                                        onClick={(event) => {
+                                            stepperRef.current.nextCallback();
+                                            trackButtonClick(event)
+                                        } } />
                             </div>
                         </StepperPanel>
                         <StepperPanel header="Erster Eindruck">
@@ -167,7 +195,12 @@ export default function LandingPage() {
                             </div>
                             <div className="flex py-4 flex-grow-1 flex-row">
                                 <Button label="Zurück" className={"flex-grow-1"} severity="secondary" icon="pi pi-arrow-left" iconPos="left" onClick={() => stepperRef.current.prevCallback()} />
-                                <Button label="Weiter" className={"flex-grow-1"} icon="pi pi-arrow-right" iconPos="right" onClick={() => stepperRef.current.nextCallback()} />
+                                <Button label="Weiter"
+                                        className={"align-items-end"} icon="pi pi-arrow-right" iconPos="right"
+                                        onClick={(event) => {
+                                            stepperRef.current.nextCallback();
+                                            trackButtonClick(event)
+                                        } } />
                             </div>
                         </StepperPanel>
                         <StepperPanel header="Ab in die Zielgerade">
@@ -177,7 +210,12 @@ export default function LandingPage() {
                             </div>
                             <div className="flex py-4 flex-grow-1 flex-row">
                                 <Button label="Zurück" className={"flex-grow-1"} severity="secondary" icon="pi pi-arrow-left" iconPos="left" onClick={() => stepperRef.current.prevCallback()} />
-                                <Button label="Weiter" className={"flex-grow-1"} icon="pi pi-arrow-right" iconPos="right" onClick={() => stepperRef.current.nextCallback()} />
+                                <Button label="Weiter"
+                                        className={"align-items-end"} icon="pi pi-arrow-right" iconPos="right"
+                                        onClick={(event) => {
+                                            stepperRef.current.nextCallback();
+                                            trackButtonClick(event)
+                                        } } />
                             </div>
                         </StepperPanel>
                         <StepperPanel header="EUER MEMORY HUNT EVENT">
@@ -187,7 +225,12 @@ export default function LandingPage() {
                             </div>
                             <div className="flex py-4 flex-grow-1 flex-row">
                                 <Button label="Zurück" className={"flex-grow-1"} severity="secondary" icon="pi pi-arrow-left" iconPos="left" onClick={() => stepperRef.current.prevCallback()} />
-                                <Button label="Weiter" className={"flex-grow-1"} icon="pi pi-arrow-right" iconPos="right" onClick={() => stepperRef.current.nextCallback()} />
+                                <Button label="Weiter"
+                                        className={"align-items-end"} icon="pi pi-arrow-right" iconPos="right"
+                                        onClick={(event) => {
+                                            stepperRef.current.nextCallback();
+                                            trackButtonClick(event)
+                                        } } />
                             </div>
                         </StepperPanel>
                         <StepperPanel header="Eure Erinnerungen">

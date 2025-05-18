@@ -35,7 +35,8 @@ const LandingPageFotoChallengeSection = () => {
                 className="text-left"
             />
             <div className="mt-5">
-                <a href="#we-host-for-you" className="no-underline inline-block bg-primary text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-primary-dark transition">
+                <a href="#we-host-for-you"
+                   className="no-underline inline-block bg-primary text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-primary-dark transition">
                     Jetzt dein eigenes Spiel starten
                 </a>
             </div>
