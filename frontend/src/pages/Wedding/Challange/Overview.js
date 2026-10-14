@@ -1,48 +1,44 @@
 import {useEffect, useState} from "react";
+import {Navigate, useNavigate, useOutletContext, useParams} from "react-router-dom";
 import {loadChallenges} from "../../../integrations/challenge-loader";
-import {useParams} from "react-router-dom";
-import {Preview} from "../../../components/Preview";
+import {BUCKET_URL} from "../../../config";
 
 export function Overview() {
+    const {id} = useParams()
+    const navigate = useNavigate()
+    const {showAll} = useOutletContext()
+    const [config, setConfig] = useState({})
 
-    const { id } = useParams()
-    const [challenges, setChallenges] = useState({})
     useEffect(() => {
-        const start = async () => {
-            const c = await loadChallenges(id)
-            setChallenges(c)
-            setTimeout( () => {
-                const hash = window.location.hash.slice(1); // Remove the '#' character from the hash
-                if (hash) {
-                    const element = document.getElementById(hash);
-                    if (element) {
-                        element.scrollIntoView();
-                    }
-                }
+        loadChallenges(id).then((c) => {
+            setConfig(c)
+            setTimeout(() => {
+                const el = document.getElementById(window.location.hash.slice(1))
+                if (el) el.scrollIntoView({block: "center"})
             }, 100)
-        }
-        start()
+        })
     }, [id]);
 
+    if (!showAll) return <Navigate to={`/wedding/${id}/challenge`} replace/>
+
     return (
-        <div className={"flex flex-column flex-grow-1"}>
-            <div className={"flex flex-column justify-content-center align-items-center p-2"}>
-                <h2 className={"text-center"}>{challenges.title}</h2>
-                <p className={"text-center"}>{challenges.description}</p>
+        <>
+            <h1 className="page-title">Alle Challenges</h1>
+            <p className="page-sub">{config.description}</p>
+            <div className="challenge-grid">
+                {(config.challenges || []).map((c) => (
+                    <button key={c.id} id={c.id} className="challenge-tile"
+                            onClick={() => navigate(`/wedding/${id}/${c.id}`)}>
+                        <span className="pic">
+                            {c.default_image?.url
+                                ? <img src={`${BUCKET_URL}/${c.default_image.url}`} alt="" loading="lazy"/>
+                                : <i className="pi pi-image"/>}
+                            <span className="badge">{c.id}</span>
+                        </span>
+                        <span className="label">{c.title}</span>
+                    </button>
+                ))}
             </div>
-            <div className={"flex flex-wrap flex-grow-1 justify-content-center align-items-center"}>
-                {
-                    challenges && challenges.challenges && challenges.challenges.map((challenge, index) => (
-                        <Preview
-                            previewUrl={challenge.default_image?.url}
-                            key={index}
-                            weddingId={id}
-                            id={challenge.id}
-                            title={challenge.title}
-                            description={challenge.description} />
-                    ))
-                }
-            </div>
-        </div>
+        </>
     )
 }

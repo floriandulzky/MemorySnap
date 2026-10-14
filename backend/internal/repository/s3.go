@@ -57,8 +57,17 @@ func (s *S3) UploadFile(filePath string, file []byte) error {
 			log.Info().Msgf("Couldn't upload file %v to %v:%v. Here's why: %v\n",
 				filePath, "memory-snap", filePath, err)
 		}
+		return err
 	}
 	return nil
+}
+
+func (s *S3) DeleteFile(key string) error {
+	_, err := s.client.DeleteObject(context.TODO(), &s3.DeleteObjectInput{
+		Bucket: aws.String("memory-snap"),
+		Key:    aws.String(key),
+	})
+	return err
 }
 
 func (s *S3) GetFileList(path string) ([]string, error) {

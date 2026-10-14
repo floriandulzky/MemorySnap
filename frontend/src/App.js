@@ -1,4 +1,3 @@
-import './App.css';
 import {PrimeReactProvider} from "primereact/api";
 import {Main} from "./pages/Main";
 

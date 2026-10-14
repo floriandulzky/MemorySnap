@@ -1,23 +1,40 @@
 package service
 
 import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/floriandulzky/memory-snap/backend/internal/model"
 	"github.com/floriandulzky/memory-snap/backend/internal/repository"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"regexp"
+	"strings"
 )
 
+var ErrForbidden = errors.New("invalid delete token")
+
 type MemorySnapService struct {
-	s3Repo repository.S3
+	s3Repo       repository.S3
+	deleteSecret []byte
 }
 
-func NewMemorySnapService(s3Repo repository.S3) MemorySnapService {
+// NewMemorySnapService takes the secret used to sign delete tokens. Guests have no accounts, so
+// the token handed out at upload time is the only proof that someone may delete a photo.
+func NewMemorySnapService(s3Repo repository.S3, deleteSecret []byte) MemorySnapService {
 	return MemorySnapService{
-		s3Repo: s3Repo,
+		s3Repo:       s3Repo,
+		deleteSecret: deleteSecret,
 	}
+}
+
+func (s *MemorySnapService) deleteToken(key string) string {
+	mac := hmac.New(sha256.New, s.deleteSecret)
+	mac.Write([]byte(key))
+	return hex.EncodeToString(mac.Sum(nil))
 }
 
 func (s *MemorySnapService) GetBy(uuid string) (model.MemorySnap, error) {
@@ -107,15 +124,49 @@ func (s *MemorySnapService) GetChallenge(uuid string, challengeId string) (model
 	return model.Challenge{}, fmt.Errorf("could not find challenge %s", challengeId)
 }
 
-func (s *MemorySnapService) SaveImage(UUID string, challengeId string, image []byte) error {
-	newUUID := uuid.New().String()
-	err := s.s3Repo.UploadFile(
-		fmt.Sprintf("%s/%s/%s", UUID, challengeId, newUUID),
-		image,
-	)
+func (s *MemorySnapService) SaveImage(UUID string, challengeId string, image []byte) (model.UploadedPhoto, error) {
+	key := fmt.Sprintf("%s/%s/%s.jpg", UUID, challengeId, uuid.New().String())
+	// UploadFile appends the .jpg extension itself
+	err := s.s3Repo.UploadFile(strings.TrimSuffix(key, ".jpg"), image)
 	if err != nil {
 		log.Error().Err(err).Msg("Failed to upload image")
-		return fmt.Errorf("failed to upload image")
+		return model.UploadedPhoto{}, fmt.Errorf("failed to upload image")
 	}
-	return nil
+	return model.UploadedPhoto{Url: key, Token: s.deleteToken(key)}, nil
+}
+
+// DeletePhoto removes a photo if token matches the one issued at upload.
+func (s *MemorySnapService) DeletePhoto(UUID string, challengeId string, photoId string, token string) error {
+	key := fmt.Sprintf("%s/%s/%s", UUID, challengeId, photoId)
+	if !hmac.Equal([]byte(token), []byte(s.deleteToken(key))) {
+		return ErrForbidden
+	}
+	return s.s3Repo.DeleteFile(key)
+}
+
+const photoboxFolder = "photobox"
+
+// ListPhotos returns every uploaded photo of a memory snap, newest folders unordered.
+func (s *MemorySnapService) ListPhotos(uuid string) ([]model.Image, error) {
+	files, err := s.s3Repo.GetFileList(uuid + "/")
+	if err != nil {
+		log.Error().Err(err).Msgf("could not load file list")
+		return nil, fmt.Errorf("could not load file list")
+	}
+	images := make([]model.Image, 0, len(files))
+	for _, file := range files {
+		if strings.HasSuffix(file, "/challenge.json") {
+			continue
+		}
+		images = append(images, model.Image{
+			Id:      file,
+			Url:     file,
+			AltText: "img",
+		})
+	}
+	return images, nil
+}
+
+func (s *MemorySnapService) SavePhoto(uuid string, image []byte) (model.UploadedPhoto, error) {
+	return s.SaveImage(uuid, photoboxFolder, image)
 }

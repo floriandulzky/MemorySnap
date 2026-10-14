@@ -2,6 +2,7 @@
     "id": "test-config",
     "title": "Foto Challenge Lisa & Flo",
     "description": "Mach mit bei der Foto-Challenge und halte die besten Momente der Feier fest! Hier sind 70 spannende Aufgaben, die du während der Feier erfüllen kannst. Viel Spaß!",
+  "show_all_challenges": false,
   "challenges": [
     {
       "id": "1",

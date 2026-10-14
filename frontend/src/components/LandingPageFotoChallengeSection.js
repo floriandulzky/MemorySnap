@@ -1,5 +1,3 @@
-import { DataView } from 'primereact/dataview';
-
 const challenges = [
     "Ein Selfie mit dem Brautpaar",
     "Jemand, der beim Tanzen völlig ausrastet",
@@ -13,35 +11,20 @@ const challenges = [
     "Das leckerste Essen des Abends"
 ];
 
-const LandingPageFotoChallengeSection = () => {
-    const itemTemplate = (task) => (
-        <div className="p-4 border rounded-xl shadow-sm bg-white text-gray-800">
-            📸 {task}
-        </div>
-    );
-
-    return (
-        <section id="fotoaufgaben" className="flex flex-column align-items-center justify-content-center text-center p-4">
-            <h2 className="text-3xl font-bold mb-6">Ideen für eure Fotoaufgaben</h2>
-            <p className="text-lg text-gray-700 mb-10">
-                Noch unsicher, welche Aufgaben eure Gäste fotografieren sollen? Hier ein paar kreative Vorschläge für euer Memory Hunt Spiel:
-            </p>
-            <DataView
-                value={challenges}
-                layout="grid"
-                itemTemplate={itemTemplate}
-                rows={10}
-                paginator={false}
-                className="text-left"
-            />
-            <div className="mt-5">
-                <a href="#we-host-for-you"
-                   className="no-underline inline-block bg-primary text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-primary-dark transition">
-                    Jetzt dein eigenes Spiel starten
-                </a>
+const LandingPageFotoChallengeSection = () => (
+    <section id="fotoaufgaben" className="section">
+        <div className="container center">
+            <span className="eyebrow">Inspiration</span>
+            <h2>Ideen für eure Fotoaufgaben</h2>
+            <p className="lead">Noch unsicher, welche Aufgaben eure Gäste fotografieren sollen? Hier ein paar kreative Vorschläge für euer Memory Hunt Spiel:</p>
+            <div className="ideas">
+                {challenges.map((task) => <span className="chip" key={task}>📸 {task}</span>)}
             </div>
-        </section>
-    );
-};
+            <p style={{marginTop: 36}}>
+                <a href="#we-host-for-you" className="btn btn-primary">Jetzt dein eigenes Spiel starten</a>
+            </p>
+        </div>
+    </section>
+);
 
 export default LandingPageFotoChallengeSection;

@@ -25,7 +25,10 @@ func (s *server) Start() {
 	r := chi.NewRouter()
 	r.Route("/", func(r chi.Router) {
 		r.Get("/{uuid}", s.httpHandler.GetMemorySnap)
+		r.Get("/{uuid}/photos", s.httpHandler.GetPhotos)
+		r.Post("/{uuid}/upload", s.httpHandler.PostPhoto)
 		r.Get("/{uuid}/{challengeId}", s.httpHandler.GetChallenge)
+		r.Delete("/{uuid}/{challengeId}/{photoId}", s.httpHandler.DeletePhoto)
 		r.Post("/{uuid}/{challengeId}/upload", s.httpHandler.PostChallenge)
 	})
 	log.Info().Msgf("Starting server on port %d", 1909)
